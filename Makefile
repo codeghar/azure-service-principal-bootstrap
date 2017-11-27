@@ -1,7 +1,7 @@
 DOCKER_COMPOSE_AZURECLI_SERVICE := "azurecli"
 WHICH_AZURECLI := "/usr/local/bin/az"
 DOCKER_COMPOSE_PROJECT_NAME := azurespbootstrap
-# AZURE_CLI_VERSION := $(if $(AZURE_CLI_VERSION),$(AZURE_CLI_VERSION),2.0.21)
+# AZURE_CLI_VERSION := $(if $(AZURE_CLI_VERSION),$(AZURE_CLI_VERSION),2.0.20)
 
 
 .PHONY: service-principal-bootstrap
@@ -175,7 +175,7 @@ azure-prereqs: check-env-vars-are-set
 
 
 .PHONY: export-terraform-values
-export-terraform-values: service-principal-bootstrap
+export-terraform-values: .azure_subscription_id .azure_subscription_tenant_id .azure_client_id
 	@echo 'Run these `export` commands before running Terraform'
 	@{ \
 		while read line; \

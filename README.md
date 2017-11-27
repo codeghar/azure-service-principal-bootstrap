@@ -27,7 +27,7 @@ Install ``jq``.
 Export these environment variables before running ``make``. If any one of them is not set, ``make``
 will fail.
 
-* AZURE_CLI_VERSION - Which version of Azure CLI 2.0 to use. This guide was written with *2.0.21*.
+* AZURE_CLI_VERSION - Which version of Azure CLI 2.0 to use. This guide was written with *2.0.20*.
 * AZURE_LOGIN_USER - Login user name for Azure CLI (same as Azure Portal)
 * AZURE_LOGIN_PASSWD - Login password for Azure CLI
 * AZURE_LOCATION - Name of location in Azure to stand up the environment
