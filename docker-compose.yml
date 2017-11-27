@@ -1,0 +1,11 @@
+version: '3.3'
+services:
+    azurecli:
+        # https://packages.microsoft.com/repos/azure-cli/pool/main/a/azure-cli/
+        # https://packages.microsoft.com/yumrepos/azure-cli/
+        # https://hub.docker.com/r/azuresdk/azure-cli-python/tags/
+        # https://github.com/Azure/azure-cli
+        image: azuresdk/azure-cli-python:${AZURE_CLI_VERSION}
+        hostname: azurecli
+        tty: true
+        working_dir: /root
