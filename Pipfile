@@ -1,0 +1,16 @@
+[[source]]
+
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+
+[packages]
+
+daiquiri = "*"
+invoke = "*"
+docker-compose = "*"
+
+
+[dev-packages]
+
