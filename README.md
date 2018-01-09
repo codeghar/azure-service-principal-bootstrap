@@ -3,8 +3,8 @@
 An Azure Service Principal is required for applications like Terraform to authenticate.
 
 This is a quick start guide on bootstrapping Service Principal in Azure. All steps are done
-using ``make``. It serves as both the admin interface as well as documentation
-on how those steps are performed.
+using *tasks.py* with the [Invoke](http://docs.pyinvoke.org/en/latest/) library. It serves as both the admin interface
+as well as documentation on how those steps are performed.
 
 # Prerequities
 
@@ -12,15 +12,17 @@ Obtain login to Azure with owner permissions for at least one subscription. It
 will be used to create a Service Principal that applications (like Terraform) will use 
 to authenticate to Azure.
 
-Install ``make``.
+Install:
 
-Install Docker.
+* Python (3.6+ recommended)
+* pipenv
+* Docker
 
-Install ``docker-compose`` and make sure it's in *[PATH](https://kb.iu.edu/d/acar)*.
+# pipenv
 
-Install ``jp`` with ``pip install jmespath-terminal``.
+After cloning this repo, cd into this directory and use ``pipenv`` to install prereq Python packages.
 
-Install ``jq``.
+        $ pipenv install
 
 # Bootstrap
 
@@ -44,42 +46,19 @@ source the file.
 
 Create Service Principal and Application in Azure.
 
-        $ make
+        $ pipenv shell
+        $ inv bootstrap
+        $ exit
 
-Once the bootstrap is complete, it will create a bunch of dot files in the current directory.
-**Keep these safe because they may contain sensitive information.**
-
-# Terraform
-
-Some of the information from these dot files is required by Terraform.
-Get this information:
-
-        $ make export-terraform-values
-
-The output of the above should be inserted in the appropriate file (e.g.
-~/.profile, ~/.bashrc, whatever) and sourced to be used by Terraform.
-
-        export TF_VAR_AZURE_SUBSCRIPTION_ID=SECRET_CHANGEME_1
-        export TF_VAR_AZURE_TENANT_ID=SECRET_CHANGEME_2
-        export TF_VAR_AZURE_CLIENT_ID=SECRET_CHANGEME_3
-        export TF_VAR_AZURE_CLIENT_SECRET=SECRET_CHANGEME_4
+Once the bootstrap is complete, it will create a *cache.json* file in the current directory.
+**Keep this information safe because it may contain sensitive information.**
 
 # Teardown
 
-To remove the Service Principal you can use the *service-principal-teardown* target.
-
-        $ make service-principal-teardown
+TODO
 
 # Troubleshooting
 
-``make`` can run into numerous errors. The first place to get an idea of what may
-have gone wrong is to read the error. Then read Makefile to understand the steps performed
+*tasks.py* can run into numerous errors. The first place to get an idea of what may
+have gone wrong is to read the error and *inv.log* file. Then read *tasks.py* to understand the steps performed
 before the error occurred.
-
-If the error is:
-
-        Assign owner role to Service Principal in the subscription [REDACTED]
-        make: *** [azure-bootstrap] Error 1
-
-Check file *.azure_role_json* was created and it contains an error. If yes, remove the file
-and run ``make`` again.

@@ -1,3 +1,6 @@
 .azure*
 # IntelliJ IDEA or PyCharm files
 .idea
+.vscode/
+cache.json
+inv.log
