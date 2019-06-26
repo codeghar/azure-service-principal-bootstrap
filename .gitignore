@@ -4,3 +4,4 @@
 .vscode/
 cache.json
 inv.log
+*.log
